@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Trip Optimizer — Multi-Agent AI Travel Planner
 
 A Flask web application that coordinates the existing Weather, Location, Hotel, Transport, Budget and Itinerary agents through `AgentCoordinator`, with a responsive HTML/CSS/JavaScript frontend.
@@ -109,3 +110,7 @@ The frontend includes trip inputs, weather-risk confirmation, trip score, hotel 
 - For a separate frontend domain, set `CORS_ALLOWED_ORIGINS` to an explicit comma-separated allowlist.
 - SQLite is appropriate for this student project/single-instance deployment. For multiple production workers/servers, migrate the persistence helpers in `app.py` to PostgreSQL or another shared database.
 - External agents still depend on provider availability and outbound internet access. Their returned hotel/place/weather data should be treated as recommendations rather than guaranteed booking inventory.
+=======
+# Intelligent-trip-optimizer
+The Trip Optimizer is an AI-powered travel planning application that creates personalized itineraries by coordinating multiple agents for destination recommendations, weather, hotels, transportation, and budget estimation.
+>>>>>>> 657dcb4c8af96764c7f2162bfc7edaf451062216
