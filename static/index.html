@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="AI multi-agent trip planner for India" />
+  <title>Trip Optimizer — Multi-Agent Travel Planner</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top"><span class="brand-mark">✦</span><span>Trip Optimizer</span></a>
+    <nav>
+      <a href="#planner">Plan</a><a href="#results">Results</a><a href="#history">History</a>
+    </nav>
+    <span id="apiStatus" class="status-dot">Checking API…</span>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MULTI-AGENT AI TRAVEL PLANNING</p>
+        <h1>One request. A complete trip plan.</h1>
+        <p class="hero-copy">Weather, attractions, hotels, transport, budget and itinerary are coordinated in one structured workflow.</p>
+        <div class="hero-badges"><span>🌦 Weather aware</span><span>🏨 Hotel scoring</span><span>🧭 Route optimized</span><span>💰 Budget checked</span></div>
+      </div>
+      <div class="hero-card">
+        <div class="mini-flow"><span>Weather</span><b>→</b><span>Places</span><b>→</b><span>Hotel</span><b>→</b><span>Route</span><b>→</b><span>Budget</span></div>
+        <p>Each agent contributes to one shared trip state, avoiding disconnected recommendations.</p>
+      </div>
+    </section>
+
+    <section id="planner" class="panel planner-panel">
+      <div class="section-head"><div><p class="eyebrow">BUILD YOUR TRIP</p><h2>Tell us what you need</h2></div><button class="ghost" id="sampleBtn" type="button">Use sample</button></div>
+      <form id="tripForm" autocomplete="off">
+        <div class="form-grid">
+          <label>Starting city<input id="origin" name="origin" placeholder="Mumbai" required maxlength="100"></label>
+          <label>Destination<input id="destination" name="destination" placeholder="Goa" required maxlength="100"></label>
+          <label>Start date<input id="start_date" name="start_date" type="date" required></label>
+          <label>End date<input id="end_date" name="end_date" type="date" required></label>
+          <label>Total budget (₹)<input id="total_budget" name="total_budget" type="number" min="500" step="500" value="40000" required></label>
+          <label>Travelers<input id="num_people" name="num_people" type="number" min="1" max="100" value="2" required></label>
+          <label>Rooms<input id="rooms" name="rooms" type="number" min="1" max="50" value="1" required></label>
+          <label>Interest<select id="interest" name="interest"></select></label>
+          <label>Trip style<select id="user_preference" name="user_preference"></select></label>
+          <label>Preferred transport<select id="preferred_mode" name="preferred_mode"></select></label>
+          <label>Hotel tier<select id="preferred_hotel" name="preferred_hotel"></select></label>
+          <label>Language<select id="lang" name="lang"></select></label>
+        </div>
+        <div class="form-actions"><button id="planBtn" class="primary" type="submit">Generate optimized trip</button><span id="formHint">Your plan may use live external APIs.</span></div>
+      </form>
+    </section>
+
+    <section id="alertBox" class="alert hidden"></section>
+    <section id="loading" class="panel loading hidden"><div class="spinner"></div><div><h3>Coordinating agents…</h3><p id="loadingText">Checking weather, places, hotel, routes and budget.</p></div></section>
+
+    <section id="results" class="results hidden">
+      <div class="section-head"><div><p class="eyebrow">YOUR OPTIMIZED PLAN</p><h2 id="tripTitle">Trip plan</h2></div><div class="score" id="scoreBox"><strong id="tripScore">0</strong><span>/100</span></div></div>
+      <div id="summaryCards" class="summary-grid"></div>
+      <div class="content-grid">
+        <div class="stack">
+          <article class="panel"><h3>🗓 Day-by-day itinerary</h3><div id="itinerary"></div></article>
+          <article class="panel"><h3>🚗 Transport</h3><div id="transport"></div></article>
+        </div>
+        <div class="stack">
+          <article class="panel"><h3>🏨 Recommended hotel</h3><div id="hotel"></div></article>
+          <article class="panel"><h3>💰 Budget breakdown</h3><div id="budget"></div></article>
+          <article class="panel"><h3>🌦 Weather & packing</h3><div id="weatherPacking"></div></article>
+        </div>
+      </div>
+      <article class="panel refine-panel"><h3>Refine this plan</h3><p>Change one or more preferences without starting over.</p>
+        <form id="refineForm" class="refine-grid">
+          <label>Budget (₹)<input id="r_budget" type="number" min="500"></label>
+          <label>Interest<select id="r_interest"></select></label>
+          <label>Transport<select id="r_mode"></select></label>
+          <label>Hotel tier<select id="r_hotel"></select></label>
+          <button class="secondary" type="submit">Apply changes</button>
+        </form>
+      </article>
+    </section>
+
+    <section id="history" class="panel history-panel">
+      <div class="section-head"><div><p class="eyebrow">PERSISTENT HISTORY</p><h2>Previous plans</h2></div><button id="refreshHistory" class="ghost">Refresh</button></div>
+      <div id="historyList" class="history-list"><p class="muted">No trips yet.</p></div>
+    </section>
+  </main>
+  <footer>Trip Optimizer · Flask + HTML/CSS/JavaScript · Multi-agent planning</footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
